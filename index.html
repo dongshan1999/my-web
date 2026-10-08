@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="作品与记录，持续更新中。" />
+    <title>作品与记录</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // 主题防闪烁：在首帧渲染前恢复用户上次选择（默认跟随系统）
+      ;(function () {
+        try {
+          var t = localStorage.getItem('theme')
+          if (t === 'dark' || t === 'light')
+            document.documentElement.dataset.theme = t
+        } catch {
+          // 存储不可用时保持系统主题。
+        }
+      })()
+    </script>
+    <script>
+      // hash 路由兜底：把误输入的无 # 深层路径纠正为 hash 路由。
+      // 例：/my-web/games/jump -> /my-web/#/games/jump
+      ;(function () {
+        if (location.hash.indexOf('#/') === 0) return
+        var m = location.pathname.match(/\/(works|docs|games)(?:\/|$)/)
+        if (!m) return
+        var idx = location.pathname.indexOf('/' + m[1])
+        var baseDir = location.pathname.slice(0, idx + 1)
+        var route = location.pathname.slice(idx)
+        location.replace(baseDir + '#' + route + location.search)
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

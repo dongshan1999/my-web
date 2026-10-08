@@ -1,0 +1,23 @@
+# 依赖与包缓存
+node_modules/
+.pnpm-store/
+
+# 构建产物
+/dist/
+coverage/
+*.tsbuildinfo
+
+# 浏览器测试产物
+test-results/
+playwright-report/
+playwright/.cache/
+
+# 本地配置和环境秘密
+.env
+.env.*
+!.env.example
+*.local
+
+# 日志与系统文件
+*.log
+.DS_Store

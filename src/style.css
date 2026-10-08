@@ -1,0 +1,286 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/*
+ * 设计 token —— 提取自 deepseek.com 官网（DSW 设计系统）
+ * 色板：bluish 灰阶 + DeepSeek 蓝点缀；圆角：药丸按钮 / 24px 卡片；
+ * 字体：Montserrat（拉丁）+ Noto Sans SC（中文）。
+ */
+
+@theme {
+  --font-sans:
+    'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-brand: 'Montserrat', 'Noto Sans SC', -apple-system, sans-serif;
+
+  /* DeepSeek 品牌蓝（仅作点缀：链接、高亮、徽章） */
+  --color-ds-50: #edf3fe;
+  --color-ds-100: #e4edfd;
+  --color-ds-400: #679efe;
+  --color-ds-450: #5686fe;
+  --color-ds-500: #3964fe;
+  --color-ds-900: #283142;
+
+  /* bluish 灰阶静态色 */
+  --color-bluish-50: #f9fafb;
+  --color-bluish-60: #f5f6f7;
+  --color-bluish-75: #f1f3f5;
+  --color-bluish-100: #ebeef2;
+  --color-bluish-200: #e1e5ee;
+  --color-bluish-300: #cfd3d6;
+  --color-bluish-400: #adb2b8;
+  --color-bluish-600: #81858c;
+  --color-bluish-700: #61666b;
+  --color-bluish-750: #43454a;
+  --color-bluish-800: #353638;
+  --color-bluish-850: #2c2c2e;
+  --color-bluish-875: #232324;
+  --color-bluish-900: #1b1b1c;
+  --color-bluish-950: #151517;
+  --color-bluish-1000: #0f1115;
+}
+
+/* ---- 语义变量：浅色为默认，暗色跟随系统或 data-theme ---- */
+:root {
+  --bg-base: #ffffff;
+  --bg-layer: #ffffff;
+  --bg-raised: #f5f6f7;
+  --text-1: #0f1115;
+  --text-2: #61666b;
+  --text-3: #81858c;
+  --text-4: #adb2b8;
+  --line-1: rgba(0, 0, 0, 0.04);
+  --line-2: rgba(0, 0, 0, 0.1);
+  --btn-bg: #1a1615;
+  --btn-text: #ffffff;
+  --btn-hover: #43454a;
+  --brand: #3964fe;
+  --hero-glow: #edf3fe;
+  /* 静态透明底色兼容不同浏览器。 */
+  --glass-raised: rgba(245, 246, 247, 0.8);
+  --header-surface: rgba(250, 252, 254, 0.68);
+  --glass-layer: rgba(255, 255, 255, 0.55);
+  /* 玻璃卡片底色：半透明，让背景光斑透出 */
+  --glass-card: rgba(255, 255, 255, 0.68);
+  --glass-panel: rgba(255, 255, 255, 0.6);
+  --flow-grid: rgba(16, 30, 42, 0.09);
+  --flow-fallback: linear-gradient(125deg, #eef2f5 0%, #c6d0d8 28%, #f6f8fa 48%, #cad3db 72%, #edf1f4 100%);
+}
+
+:root[data-theme='dark'] {
+  --bg-base: #151517;
+  --bg-layer: #232324;
+  --bg-raised: #353638;
+  --text-1: #f9fafb;
+  --text-2: #cfd3d6;
+  --text-3: #adb2b8;
+  --text-4: #81858c;
+  --line-1: hsla(0, 0%, 100%, 0.06);
+  --line-2: hsla(0, 0%, 100%, 0.12);
+  --btn-bg: #ffffff;
+  --btn-text: #0a0a0a;
+  --btn-hover: #ebeef2;
+  --brand: #5686fe;
+  --hero-glow: #1b2032;
+  --glass-raised: rgba(53, 54, 56, 0.8);
+  --header-surface: rgba(21, 23, 25, 0.58);
+  --glass-layer: rgba(35, 36, 36, 0.55);
+  --glass-card: rgba(35, 36, 36, 0.5);
+  --glass-panel: rgba(44, 44, 46, 0.5);
+    --flow-grid: rgba(225, 235, 242, 0.08);
+    --flow-fallback: linear-gradient(125deg, #0a0c10 0%, #30373e 28%, #11151a 48%, #3b424a 72%, #0a0c10 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg-base: #151517;
+    --bg-layer: #232324;
+    --bg-raised: #353638;
+    --text-1: #f9fafb;
+    --text-2: #cfd3d6;
+    --text-3: #adb2b8;
+    --text-4: #81858c;
+    --line-1: hsla(0, 0%, 100%, 0.06);
+    --line-2: hsla(0, 0%, 100%, 0.12);
+    --btn-bg: #ffffff;
+    --btn-text: #0a0a0a;
+    --btn-hover: #ebeef2;
+    --brand: #5686fe;
+    --hero-glow: #1b2032;
+    --glass-raised: rgba(53, 54, 56, 0.8);
+    --header-surface: rgba(21, 23, 25, 0.58);
+    --glass-layer: rgba(35, 36, 36, 0.55);
+    --glass-card: rgba(35, 36, 36, 0.5);
+    --glass-panel: rgba(44, 44, 46, 0.5);
+    --flow-grid: rgba(225, 235, 242, 0.08);
+    --flow-fallback: linear-gradient(125deg, #0a0c10 0%, #30373e 28%, #11151a 48%, #3b424a 72%, #0a0c10 100%);
+  }
+}
+
+/* 把语义变量映射为 Tailwind 工具类：bg-base / text-ink / border-line-2 ... */
+@theme inline {
+  --color-base: var(--bg-base);
+  --color-layer: var(--bg-layer);
+  --color-raised: var(--bg-raised);
+  --color-ink: var(--text-1);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-ink-4: var(--text-4);
+  --color-line-1: var(--line-1);
+  --color-line-2: var(--line-2);
+  --color-btn: var(--btn-bg);
+  --color-btn-text: var(--btn-text);
+  --color-brand: var(--brand);
+}
+
+/* ---- 基础 ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-base text-ink antialiased;
+  font-family: var(--font-sans);
+}
+
+.site-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* ---- DSH 风格组件 ---- */
+@layer components {
+  /* 药丸按钮（官网 ds-btn-*） */
+  .btn-pill {
+    @apply inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-sm font-medium no-underline transition-all duration-200;
+    line-height: 120%;
+  }
+  .btn-primary {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+  }
+  .btn-primary:hover {
+    background: var(--btn-hover);
+  }
+  .btn-secondary {
+    border: 1px solid var(--line-2);
+    background: var(--glass-layer);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    color: var(--text-1);
+  }
+  .btn-secondary:hover {
+    border-color: var(--text-3);
+  }
+
+  /* 区块大标题（官网 ds-text-hero） */
+  .ds-hero-text {
+    font-family: var(--font-brand);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 150%;
+  }
+  .ds-subtitle {
+    @apply text-xl font-medium;
+    letter-spacing: 0;
+    line-height: 150%;
+  }
+
+  /* 卡片：玻璃拟态（官网 --ds-radius-card: 24px + 半透明 + 背景模糊） */
+  .ds-card {
+    @apply border border-line-1 transition-all duration-200;
+    border-radius: 24px;
+    background: var(--glass-card);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .ds-card:hover {
+    border-color: var(--line-2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  /* 玻璃面板（列表容器等大面积区域） */
+  .ds-glass-panel {
+    background: var(--glass-panel);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  /* 滚动后使用轻透的玻璃导航，不盖实流水背景。 */
+  .header-glass {
+    border: 1px solid var(--line-2);
+    background: var(--header-surface);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  /* 环境光由全屏流水提供。 */
+  .hero-glow {
+    background: transparent;
+  }
+
+  /* 徽章 */
+  .ds-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line-2 px-3 py-1 text-xs font-medium text-ink-2;
+    background: var(--bg-raised);
+  }
+}
+
+/* 文档排版：prose 跟随语义变量，天然支持暗色 */
+.prose {
+  --tw-prose-body: var(--text-2);
+  --tw-prose-headings: var(--text-1);
+  --tw-prose-lead: var(--text-2);
+  --tw-prose-links: var(--brand);
+  --tw-prose-bold: var(--text-1);
+  --tw-prose-counters: var(--text-3);
+  --tw-prose-bullets: var(--text-4);
+  --tw-prose-hr: var(--line-2);
+  --tw-prose-quotes: var(--text-1);
+  --tw-prose-quote-borders: var(--line-2);
+  --tw-prose-captions: var(--text-3);
+  --tw-prose-code: var(--text-1);
+  --tw-prose-pre-code: var(--text-2);
+  --tw-prose-pre-bg: var(--bg-raised);
+  --tw-prose-th-borders: var(--line-2);
+  --tw-prose-td-borders: var(--line-1);
+}
+.prose :where(code):not(:where(pre code))::before,
+.prose :where(code):not(:where(pre code))::after {
+  content: none;
+}
+.prose :where(code):not(:where(pre code)) {
+  background: var(--bg-raised);
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-weight: 400;
+}
+.prose :where(pre) {
+  border: 1px solid var(--line-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ds-card,
+  .btn-pill,
+  .header-glass {
+    transition: none;
+  }
+  .ds-card:hover {
+    transform: none;
+  }
+}
