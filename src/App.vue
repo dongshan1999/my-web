@@ -10,7 +10,7 @@ const route = useRoute()
 <template>
   <div class="site-shell flex min-h-screen flex-col">
     <!-- 流体烟雾背景：WebGL，鼠标划过扰动流体 -->
-    <FluidBackground v-if="route.name !== 'game-jump'" />
+    <FluidBackground v-if="!['game-jump', 'game-racer'].includes(String(route.name))" />
     <SiteHeader />
     <main class="flex-1">
       <RouterView />

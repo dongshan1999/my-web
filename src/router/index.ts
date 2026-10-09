@@ -34,6 +34,11 @@ const router = createRouter({
       name: 'game-jump',
       component: () => import('../pages/games/JumpPage.vue'),
     },
+    {
+      path: '/games/racer',
+      name: 'game-racer',
+      component: () => import('../pages/games/RacerPage.vue'),
+    },
     { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
   scrollBehavior(_to, _from, savedPosition) {

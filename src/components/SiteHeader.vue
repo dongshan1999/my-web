@@ -8,7 +8,8 @@ const links = [
   { to: '/', label: '首页' },
   { to: '/works', label: '作品' },
   { to: '/docs', label: '文档' },
-  { to: '/games/jump', label: '小游戏' },
+  { to: '/games/jump', label: '跳一跳' },
+  { to: '/games/racer', label: '纸上公路' },
 ]
 const scrolled = ref(false)
 const isDark = ref(false)

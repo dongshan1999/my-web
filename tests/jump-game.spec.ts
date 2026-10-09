@@ -251,7 +251,7 @@ test('离开游戏后恢复网站背景，返回无重复画布', async ({ page 
   await page.clock.runFor(100)
   await expect(page.locator('.fluid-bg')).toHaveAttribute('data-renderer', 'webgl')
   await expect(page.getByTestId('jump-canvas')).toHaveCount(0)
-  await page.getByRole('navigation').getByRole('link', { name: '小游戏', exact: true }).click({ force: true })
+  await page.getByRole('navigation').getByRole('link', { name: '跳一跳', exact: true }).click({ force: true })
   await page.clock.runFor(100)
   await expect(page.getByTestId('jump-canvas')).toHaveCount(1)
   await expect(page.locator('.jump-stage')).toHaveAttribute('data-phase', 'ready')

@@ -10,6 +10,7 @@
 - Tailwind CSS 4、Markdown-it、front-matter
 - 程序化 WebGL 流水背景、鼠标与触屏交互、深浅主题
 - Three.js 场景、cannon-es 跳跃物理与碰撞
+- Three.js 纸绘风格赛车、单圈计时与移动端转向
 
 ## 本地运行
 
@@ -22,6 +23,7 @@ pnpm dev
 
 - 首页：`http://localhost:5173/my-web/#/`
 - 跳一跳：`http://localhost:5173/my-web/#/games/jump`
+- 纸上公路：`http://localhost:5173/my-web/#/games/racer`
 
 ```bash
 pnpm build     # 类型检查并生成 dist/

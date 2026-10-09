@@ -19,8 +19,8 @@ const featured = works.slice(0, 3)
         <RouterLink to="/works" class="btn-pill btn-primary site-primary">
           浏览作品 <ArrowRight :size="16" :stroke-width="1.6" aria-hidden="true" />
         </RouterLink>
-        <RouterLink to="/games/jump" class="btn-pill btn-secondary">
-          <Gamepad2 :size="17" :stroke-width="1.6" aria-hidden="true" />跳一跳
+        <RouterLink to="/games/racer" class="btn-pill btn-secondary">
+          纸上公路
         </RouterLink>
       </div>
     </section>
@@ -53,10 +53,10 @@ const featured = works.slice(0, 3)
         <Gamepad2 :size="20" :stroke-width="1.4" aria-hidden="true" />
         <div class="overview-copy">
           <h2>小游戏</h2>
-          <p>跳一跳</p>
+          <p>纸上公路 · 赛车</p>
         </div>
-        <RouterLink to="/games/jump" class="section-more" aria-label="游玩跳一跳">
-          游玩 <ArrowRight :size="15" :stroke-width="1.6" aria-hidden="true" />
+        <RouterLink to="/games/racer" class="section-more" aria-label="游玩纸上公路">
+          赛车 <ArrowRight :size="15" :stroke-width="1.6" aria-hidden="true" />
         </RouterLink>
       </div>
     </section>

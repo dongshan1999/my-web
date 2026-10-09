@@ -113,12 +113,12 @@ test('较长站点标题不会挤出首页或导航', async ({ page }, info) => 
   await page.screenshot({ path: info.outputPath('home-long-title-mobile.png') })
 })
 
-test('手机首页的跳一跳入口可进入实际游戏', async ({ page }) => {
+test('手机首页的纸上公路入口可进入实际游戏', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.emulateMedia({ colorScheme: 'dark', reducedMotion: 'reduce' })
   await page.goto('./#/')
-  await page.locator('.site-actions').getByRole('link', { name: '跳一跳', exact: true }).click()
-  await expect(page.locator('.jump-stage')).toHaveAttribute('data-renderer', 'ready')
-  await expect(page.getByRole('heading', { name: '跳一跳', exact: true })).toBeVisible()
-  await expect(page.getByRole('button', { name: '蓄力起跳', exact: true })).toBeVisible()
+  await page.locator('.site-actions').getByRole('link', { name: '纸上公路', exact: true }).click()
+  await expect(page.locator('.racer-stage')).toHaveAttribute('data-renderer', 'ready')
+  await expect(page.getByRole('heading', { name: '纸上公路', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '开始比赛', exact: true })).toBeVisible()
 })
